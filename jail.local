@@ -38,6 +38,11 @@ logpath  = %(apache_error_log)s
 logpath  = %(apache_error_log)s
 maxretry = 3
 
+[apache-botsearch]
+port     = http,https
+logpath  = %(apache_error_log)s
+maxretry = 2
+
 [apache-postflood]
 enabled = true
 port= http,https
