@@ -1,0 +1,4 @@
+[Definition]
+failregex = ^<HOST> -.*GET.*/login-alert-error\.gif
+            ^<HOST> -.*POST.*/typo3/index\.php
+ignoreregex = 
