@@ -1,6 +1,9 @@
 [INCLUDES]
 before = paths-debian.conf
 
+[apache-shellshock]
+enabled = true
+
 [apache-auth]
 enabled = true
 
