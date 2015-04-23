@@ -1,0 +1,45 @@
+destemail = root@localhost
+banaction = iptables-multiport
+
+[apache]
+enabled = true
+
+[apache-common]
+enabled = true
+
+[apache-badbots]
+enabled = true
+
+[apache-noscript]
+enabled = true
+
+[apache-overflows]
+enabled = true
+
+[apache-phpmyadmin]
+enabled  = true
+port     = http,https
+filter   = apache-phpmyadmin
+logpath  = /var/log/apache*/*error.log
+maxretry = 3
+
+[apache-postflood]
+enabled = true
+filter = apache-postflood
+logpath = /var/log/apache*/*access.log
+findtime = 10
+maxretry = 10
+
+[apache-w00tw00t]
+enabled = true
+filter = apache-w00tw00t
+action = iptables[name=Apache-w00tw00t<Plug>PeepOpenort=80<Plug>PeepOpenrotocol=tcp]
+logpath = /var/log/apache*/*access.log
+maxretry = 1
+
+[proftpd]
+enabled = true
+
+[recidive]
+enabled = true
+
