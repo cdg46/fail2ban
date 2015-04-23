@@ -1,6 +1,31 @@
 [INCLUDES]
 before = paths-debian.conf
 
+[DEFAULT]
+ignoreip = 127.0.0.1/8
+host = __STRUCTURE__][__VM__
+destemail = root@localhost
+
+# ban & send an e-mail with whois report to the destemail.
+action_mw = %(banaction)s[name=%(__name__)s, port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
+              %(mta)s-whois[name=%(__name__)s, dest="%(destemail)s", protocol="%(protocol)s", chain="%(chain)s", host=%(host)s]
+
+# ban & send an e-mail with whois report and relevant log lines
+# to the destemail.
+action_mwl = %(banaction)s[name=%(__name__)s, port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
+               %(mta)s-whois-lines[name=%(__name__)s, dest="%(destemail)s", logpath=%(logpath)s, chain="%(chain)s", host=%(host)s]
+
+action = %(action_mwl)s
+
+[sshd]
+enabled = true
+
+[pam-generic]
+enabled = true
+
+[sshd-ddos]
+enabled = true
+
 [apache-shellshock]
 enabled = true
 
