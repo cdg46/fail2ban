@@ -1,5 +1,10 @@
+[INCLUDES]
+before = paths-debian.conf
+
+[DEFAULT]
 destemail = root@localhost
 banaction = iptables-multiport
+logpath = 
 
 [apache]
 enabled = true
@@ -9,30 +14,35 @@ port= http,https
 enabled = true
 port= http,https
 
+
 [apache-badbots]
 enabled = true
 port= http,https
+logpath  = %(apache_access_log)s
 
 [apache-noscript]
 enabled = true
 port= http,https
+logpath  = %(apache_error_log)s
 
 [apache-overflows]
 enabled = true
 port= http,https
+logpath  = %(apache_error_log)s
 
 [apache-phpmyadmin]
 enabled  = true
 port     = http,https
 filter   = apache-phpmyadmin
-logpath  = /var/log/apache*/*error.log
+logpath  = %(apache_error_log)s
+logpath  = %(apache_error_log)s
 maxretry = 3
 
 [apache-postflood]
 enabled = true
 port= http,https
 filter = apache-postflood
-logpath = /var/log/apache*/*access.log
+logpath  = %(apache_access_log)s
 findtime = 10
 maxretry = 10
 
@@ -41,20 +51,22 @@ enabled = true
 port= http,https
 filter = apache-w00tw00t
 action = iptables[name=Apache-w00tw00t<Plug>PeepOpenort=80<Plug>PeepOpenrotocol=tcp]
-logpath = /var/log/apache*/*access.log
+logpath  = %(apache_access_log)s
 maxretry = 1
 
 [apache-typo3]
 enabled = true
 port= http,https
 filter= apache-typo3
-logpath = /var/log/apache*/*access.log
+logpath  = %(apache_access_log)s
 maxretry = 7
 findtime = 3600
 bantime  = 7200
 
 [proftpd]
 enabled = true
+port     = ftp,ftp-data,ftps,ftps-data
+logpath  = %(proftpd_log)s
 
 [recidive]
 enabled = true
