@@ -63,6 +63,12 @@ maxretry = 7
 findtime = 3600
 bantime  = 7200
 
+[apache-fakegooglebot]
+port     = http,https
+logpath  = %(apache_access_log)s
+maxretry = 1
+ignorecommand = %(ignorecommands_dir)s/apache-fakegooglebot <ip>
+
 [proftpd]
 enabled = true
 port     = ftp,ftp-data,ftps,ftps-data
