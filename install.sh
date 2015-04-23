@@ -25,9 +25,9 @@ cp -r action.d/*.conf /etc/fail2ban/action.d/
 cp *.local /etc/fail2ban/
 cp *.conf /etc/fail2ban/
 
-sed -i -e 's/root@localhost/$destemail/' /etc/fail2ban/jail.local
-sed -i -e 's/__STRUCTURE__/$structure/' /etc/fail2ban/jail.local
-sed -i -e 's/__VM__/$(hostname)/' /etc/fail2ban/jail.local
+sed -i -e "s/root@localhost/$destemail/" /etc/fail2ban/jail.local
+sed -i -e "s/__STRUCTURE__/$structure/" /etc/fail2ban/jail.local
+sed -i -e "s/__VM__/$(hostname)/" /etc/fail2ban/jail.local
 
 if [[ $INSTALL == 1 ]] ; then
     service fail2ban start
