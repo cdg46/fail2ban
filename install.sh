@@ -9,9 +9,9 @@ if [[ ! -e /opt/fail2ban/installed ]]; then
     cd /opt/fail2ban
 
     # Install in system
-    cp -r filter.di/*.conf /etc/fail2ban/filter.d/
+    cp -r filter.d/*.conf /etc/fail2ban/filter.d/
     cp jail.local /etc/fail2ban/jail.local
 
-    touch /opt/fal2ban/installed
+    touch /opt/fail2ban/installed
 fi
 #done
