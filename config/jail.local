@@ -97,6 +97,3 @@ action_badips[category=proftpd]
 
 [recidive]
 enabled = true
-
-[named-refused]
-enabled = true
