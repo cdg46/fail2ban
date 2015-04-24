@@ -25,6 +25,8 @@ fi
 echo "Please insert the email's receiver, then your structure"
 read -p "Email's receiver : " destemail
 read -p "Structure  : " structure
+echo "Please insert your blocklist apikey"
+read -p "blocklist.de key  : " blocklist_de_apikey
 
 # Install in system
 cd /opt/fail2ban/config
@@ -36,14 +38,7 @@ cp *.conf /etc/fail2ban/
 sed -i -e "s/root@localhost/$destemail/" /etc/fail2ban/jail.local
 sed -i -e "s/__STRUCTURE__/$structure/" /etc/fail2ban/jail.local
 sed -i -e "s/__VM__/$(hostname)/" /etc/fail2ban/jail.local
-
-# Register blocklist key
-echo "Please insert your blocklist apikey"
-read -p "blocklist.de key  : " blocklost_de_apikey
-if [[ $blocklist_de_apikey != '' ]]; then
-    sed -i -e "s/\# \[Init\]\n\# blocklist_de_apikey = \{api key from registration\}/[Init]\nblocklist_de_apikey = $(blocklist_de_paikey)/" /etc/fail2ban/jail.conf
-    sed -i -e "s/\# blocklist_de_apikey = \{api key from registration\}/$(blocklist_de_paikey)/" /etc/fail2ban/jail.conf
-fi
+sed -i -e "s/__blocklist_de_apikey__/$(blocklist_de_apikey)/" /etc/fail2ban/jail.local
 
 if [[ $INSTALL == 1 ]] ; then
     service fail2ban start
