@@ -17,31 +17,38 @@ action_mw = %(banaction)s[name=%(__name__)s, bantime="%(bantime)s", port="%(port
 action_mwl = %(banaction)s[name=%(__name__)s, bantime="%(bantime)s", port="%(port)s", protocol="%(protocol)s", chain="%(chain)s", host="%(host)s"]
              %(mta)s-whois-lines[name=%(__name__)s, dest="%(destemail)s", logpath=%(logpath)s, chain="%(chain)s", host="%(host)s"]
 
-action = %(action_mwl)s %(action_badips)s
+action = %(action_mwl)s
 
 [sshd]
 enabled = true
+action_badips[category=ssh]
 
 [pam-generic]
 enabled = true
 
 [sshd-ddos]
 enabled = true
+action_badips[category=ssh-ddos]
 
 [apache-shellshock]
 enabled = true
+action_badips[category=apache]
 
 [apache-auth]
 enabled = true
+action_badips[category=apache-ddos]
 
 [apache-badbots]
 enabled = true
+action_badips[category=badbots]
 
 [apache-noscript]
 enabled = true
+action_badips[category=apache-noscript]
 
 [apache-overflows]
 enabled = true
+action_badips[category=apache-overflows]
 
 [apache-botsearch]
 enabled = true
@@ -51,8 +58,8 @@ enabled  = true
 port     = http,https
 filter   = apache-phpmyadmin
 logpath  = %(apache_error_log)s
-logpath  = %(apache_error_log)s
 maxretry = 3
+action_badips[category=apache-phpmyadmin]
 
 [apache-postflood]
 enabled = true
@@ -69,6 +76,7 @@ filter = apache-w00tw00t
 action = iptables[name=Apache-w00tw00t<Plug>PeepOpenort=80<Plug>PeepOpenrotocol=tcp]
 logpath  = %(apache_access_log)s
 maxretry = 1
+action_badips[category=apache-w00tw00t]
 
 [apache-typo3]
 enabled = true
@@ -84,6 +92,7 @@ enabled = true
 
 [proftpd]
 enabled = true
+action_badips[category=proftpd]
 
 [recidive]
 enabled = true
