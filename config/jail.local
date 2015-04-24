@@ -15,7 +15,7 @@ action_mw = %(banaction)s[name=%(__name__)s, bantime="%(bantime)s", port="%(port
 
 # ban & send an e-mail with whois report and relevant log lines
 # to the destemail.
-action_mw = %(banaction)s[name=%(__name__)s, bantime="%(bantime)s", port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
+action_mwl = %(banaction)s[name=%(__name__)s, bantime="%(bantime)s", port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
             %(mta)s-whois-lines[name=%(__name__)s, dest="%(destemail)s", protocol="%(protocol)s", chain="%(chain)s", host="%(host)s"]
 
 action = %(action_mwl)s
