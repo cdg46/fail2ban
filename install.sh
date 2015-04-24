@@ -38,9 +38,9 @@ cp *.conf /etc/fail2ban/
 sed -i -e "s/root@localhost/$destemail/g" /etc/fail2ban/jail.local
 sed -i -e "s/__STRUCTURE__/$structure/" /etc/fail2ban/jail.local
 sed -i -e "s/__VM__/$(hostname)/" /etc/fail2ban/jail.local
-sed -i -e "s/__blocklist_de_apikey__/$(blocklist_de_apikey)/" /etc/fail2ban/jail.local
+sed -i -e "s/__blocklist_de_apikey__/$blocklist_de_apikey/" /etc/fail2ban/jail.local
 
-if [[ $INSTALL == 1 ]] ; then
+if [[ "$INSTALL" == "1" ]] ; then
     service fail2ban start
 else
     service fail2ban restart
