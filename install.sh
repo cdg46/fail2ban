@@ -28,8 +28,8 @@ read -p "Structure  : " structure
 
 # Install in system
 cd /opt/fail2ban/config
-cp -r filter.d/*.conf /etc/fail2ban/filter.d/
-cp -r action.d/*.conf /etc/fail2ban/action.d/
+cp -r filter.d/* /etc/fail2ban/filter.d/
+cp -r action.d/* /etc/fail2ban/action.d/
 cp *.local /etc/fail2ban/
 cp *.conf /etc/fail2ban/
 
