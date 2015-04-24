@@ -1,6 +1,13 @@
 #!/bin/bash
 INSTALL=0
 # Require git
+clear
+echo "#########################################";
+echo "#                                       #";
+echo "#          Fail2ban postinstall         #";
+echo "#                                       #";
+echo "#########################################";
+echo "";
 echo "Install curl git fail2ban if necessary."
 apt-get -qq --assume-yes install curl git fail2ban > /dev/null
 
@@ -15,6 +22,7 @@ if [[ ! -e /opt/fail2ban/installed ]]; then
         git pull origin master
 fi
 
+echo "Please insert the email's receiver, then your structure"
 read -p "Email's receiver : " destemail
 read -p "Structure  : " structure
 
@@ -28,6 +36,14 @@ cp *.conf /etc/fail2ban/
 sed -i -e "s/root@localhost/$destemail/" /etc/fail2ban/jail.local
 sed -i -e "s/__STRUCTURE__/$structure/" /etc/fail2ban/jail.local
 sed -i -e "s/__VM__/$(hostname)/" /etc/fail2ban/jail.local
+
+# Register blocklist key
+echo "Please insert your blocklist apikey"
+read -p "blocklist.de key  : " blocklost_de_apikey
+if [[ $blocklist_de_apikey != '' ]]; then
+    sed -i -e "s/\# \[Init\]\n\# blocklist_de_apikey = \{api key from registration\}/[Init]\nblocklist_de_apikey = $(blocklist_de_paikey)/" /etc/fail2ban/jail.conf
+    sed -i -e "s/\# blocklist_de_apikey = \{api key from registration\}/$(blocklist_de_paikey)/" /etc/fail2ban/jail.conf
+fi
 
 if [[ $INSTALL == 1 ]] ; then
     service fail2ban start
