@@ -5,7 +5,8 @@ before = paths-debian.conf
 host = __STRUCTURE__][__VM__
 destemail = root@localhost
 banaction = iptables-multiport
-            action_badips
+
+action_blocklist_de = blocklist_de[email="%(sender)s", service=%(filter)s, apikey="__blocklist_de_apikey__"]
 
 # ban & send an e-mail with whois report to the destemail.
 action_mw = %(banaction)s[name=%(__name__)s, bantime="%(bantime)s", port="%(port)s", protocol="%(protocol)s", chain="%(chain)s", host="%(host)s"]
